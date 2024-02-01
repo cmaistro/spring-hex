@@ -15,5 +15,8 @@ public class FeatureToggleEntity {
     @Id
     private String featureName;
     private boolean enabled;
+    private String strategyId; // ID da estratégia de ativação
+    private String parameters;  // Parâmetros da estratégia em formato JSON ou similar
+
 
 }

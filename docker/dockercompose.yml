@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7.44
+    environment:
+      - MYSQL_DATABASE=spring_hex_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql-data:/var/lib/mysql
