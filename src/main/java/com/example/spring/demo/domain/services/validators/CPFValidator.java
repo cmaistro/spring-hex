@@ -1,5 +1,6 @@
 package com.example.spring.demo.domain.services.validators;
 
+import com.example.spring.demo.domain.exceptions.InvalidRequestDataException;
 import com.example.spring.demo.domain.model.Customer;
 import com.example.spring.demo.infrastructure.toggle.Features;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class CPFValidator implements ClientValidator {
     @Override
     public void validate(Customer customer) {
         if (customer.getCPF() == null || customer.getCPF().isEmpty()) {
-            throw new IllegalArgumentException("CPF is required");
+            throw new InvalidRequestDataException("CPF is required");
         }
     }
 

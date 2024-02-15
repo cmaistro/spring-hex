@@ -43,7 +43,7 @@ public class TransactionCustomRepositoryImpl implements TransactionCustomReposit
         cq.multiselect(root.get("customerId"),
                 root.get("entryMode"),
                 root.get("bin"),
-                cb.sum(root.get("amount")).as(BigDecimal.class).alias("amount"));
+                cb.avg(root.get("amount")).as(BigDecimal.class).alias("amount"));
 
         cq.where(cb.and(predicateCreators
                 .stream()
@@ -59,7 +59,14 @@ public class TransactionCustomRepositoryImpl implements TransactionCustomReposit
         tq.setFirstResult(offset);
         tq.setMaxResults(size + 1);
 
-        return new PageableResponseDTO<TransactionSummaryDTO>(tq.getResultList().subList(0, size), offset, size, tq.getResultList().size() > size);
+        var completeResultList = tq.getResultList();
+
+        return new PageableResponseDTO<>((completeResultList.size() <= size ? completeResultList : completeResultList.subList(0, size)),
+                offset, completeResultList.size() <= size ? completeResultList.size() : size,
+                completeResultList.size() > size);
+
+
+
 
     }
 }

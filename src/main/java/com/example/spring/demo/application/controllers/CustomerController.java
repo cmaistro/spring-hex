@@ -22,7 +22,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> createProduct(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         Customer createdCustomer = customerManagementService.createClient(customer);
         return ResponseEntity.ok(createdCustomer);
     }

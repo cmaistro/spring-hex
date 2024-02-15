@@ -1,4 +1,4 @@
-package com.example.spring.demo.domain.model;
+package com.example.spring.demo.domain.model.enums;
 
 public enum Features {
     CPF_VALIDATOR;
